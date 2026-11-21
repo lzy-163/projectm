@@ -45,7 +45,7 @@ jobs:
           cd ${{ github.workspace }}/build-gtest && ./setup.sh && ./build-emscripten.sh
 
       - name: Configure Build
-        run: emcmake cmake -G "Unix Makefiles" -S "${{ github.workspace }}" -B "${{ github.workspace }}/cmake-build" -DCMAKE_INSTALL_PREFIX="${{ github.workspace }}/install" -DCMAKE_VERBOSE_MAKEFILE=YES -DBUILD_TESTING=YES -DGTest_DIR="${{ github.workspace }}/build-gtest/dist/emscripten/lib/lib/cmake/GTest"
+        run: emcmake cmake -G "Unix Makefiles" -S "${{ github.workspace }}" -B "${{ github.workspace }}/cmake-build" -DCMAKE_INSTALL_PREFIX="${{ github.workspace }}/install" -DCMAKE_VERBOSE_MAKEFILE=YES -DBUILD_TESTING=YES -DGTest_DIR="${{ github.workspace }}/build-gtest/dist/emscripten/lib/cmake/GTest"
 
       - name: Build Debug
         run: emmake cmake --build "${{ github.workspace }}/cmake-build" --parallel
@@ -59,8 +59,6 @@ jobs:
       - name: Install
         run: |
           cd "${{ github.workspace }}/cmake-build" && emmake make install
-          
-        # emcmake cmake --build "${{ github.workspace }}/cmake-build" --config "Release" --target install
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
