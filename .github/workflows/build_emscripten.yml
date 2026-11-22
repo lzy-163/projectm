@@ -48,7 +48,7 @@ jobs:
         run: emcmake cmake -G "Unix Makefiles" -S "${{ github.workspace }}" -B "${{ github.workspace }}/cmake-build" -DCMAKE_INSTALL_PREFIX="${{ github.workspace }}/install" -DCMAKE_VERBOSE_MAKEFILE=YES -DBUILD_TESTING=YES -DGTest_DIR="${{ github.workspace }}/build-gtest/dist/emscripten/lib/lib/cmake/GTest"
 
       - name: Build Debug
-        run: emmake cmake --build "${{ github.workspace }}/cmake-build" --parallel
+        run: cmake --build "${{ github.workspace }}/cmake-build" --parallel
 
       # - name: Run Unit Tests
       #   run: ctest --test-dir "${{ github.workspace }}/cmake-build" --verbose --build-config "Debug"
